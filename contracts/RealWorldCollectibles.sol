@@ -47,6 +47,7 @@ contract RealWorldCollectibles is ERC721, ERC721Enumerable, ERC721URIStorage, Ac
     ) ERC721(mName, mSymbol) {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, msg.sender);
+        _tokenIdCounter.increment(); // make sure tokenId starts with 1
     }
 
     function tokenIds() external view returns (uint256[] memory) {
@@ -118,9 +119,9 @@ contract RealWorldCollectibles is ERC721, ERC721Enumerable, ERC721URIStorage, Ac
 
     function mint(
         address to,
-        uint256 tokenId,
         string memory uri
     ) public onlyRole(MINTER_ROLE) {
+        uint256 tokenId = _tokenIdCounter.current();
 
         _mint(to, tokenId);
         _setTokenURI(tokenId, uri);
@@ -131,11 +132,11 @@ contract RealWorldCollectibles is ERC721, ERC721Enumerable, ERC721URIStorage, Ac
 
     function safeMint(
         address to,
-        uint256 tokenId,
         string memory uri,
 
         bytes memory data_ 
     ) public onlyRole(MINTER_ROLE) {
+        uint256 tokenId = _tokenIdCounter.current();
         super._safeMint(to, tokenId, data_);
         _setTokenURI(tokenId, uri);
         _allTokens.push(tokenId);
