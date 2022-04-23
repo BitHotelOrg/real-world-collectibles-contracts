@@ -15,19 +15,31 @@ async function main() {
   // manually to make sure everything is compiled
   // await hre.run('compile');
 
+  const NAME = "Real World Collectibles";
+  const SYMBOL = "REAL";
+
   // We get the contract to deploy
   const RealWorldCollectiblesUpgradeable = await hre.ethers.getContractFactory(
     "RealWorldCollectiblesUpgradeable"
   );
   const nft = await hre.upgrades.deployProxy(
     RealWorldCollectiblesUpgradeable,
-    ["Real World Collectibles", "REAL"],
+    [NAME, SYMBOL],
     { kind: "uups" }
   );
 
   await nft.deployed();
 
   console.log("RealWorldCollectiblesUpgradeable deployed to:", nft.address);
+
+  const RealWorldCollectibles = await hre.ethers.getContractFactory(
+    "RealWorldCollectibles"
+  );
+  const collectibles = await RealWorldCollectibles.deploy(NAME, SYMBOL);
+
+  await collectibles.deployed();
+
+  console.log("RealWorldCollectibles deployed to:", collectibles.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
