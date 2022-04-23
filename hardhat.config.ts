@@ -52,12 +52,12 @@ const config: HardhatUserConfig = {
   paths: {
     sources: "contracts",
   },
-  preprocess: {
-    eachLine: (): LinePreprocessorConfig => ({
-      transform: (line) => line + "// comment at the end of each line",
-      settings: { comment: true }, // ensure the cache is working, in that example it can be anything as there is no option, the preprocessing happen all the time
-    }),
-  },
+  // preprocess: {
+  //   eachLine: (): LinePreprocessorConfig => ({
+  //     transform: (line) => line.startsWith("//"),
+  //     settings: { comment: true }, // ensure the cache is working, in that example it can be anything as there is no option, the preprocessing happen all the time
+  //   }),
+  // },
   // spdxLicenseIdentifier: {
   //   overwrite: true,
   //   runOnCompile: true,
