@@ -62,6 +62,7 @@
     "ethers": "^5.6.4",
     "fs": "^0.0.1-security",
     "hardhat": "^2.9.3",
+    "hardhat-deploy": "^0.11.4",
     "hardhat-gas-reporter": "^1.0.8",
     "hardhat-preprocessor": "^0.1.4",
     "hardhat-spdx-license-identifier": "^2.0.3",
