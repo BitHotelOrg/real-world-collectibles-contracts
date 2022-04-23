@@ -1,0 +1,10 @@
+{
+  "recomendations": [
+    "esbenp.prettier-vscode",
+    "juanblanco.solidity",
+    "johnpapa.vscode-peacock",
+    "remixproject.ethereum-remix",
+    "tintinweb.solidity-visual-auditor",
+  ],
+  "unwantedRecomendations": [],
+}
